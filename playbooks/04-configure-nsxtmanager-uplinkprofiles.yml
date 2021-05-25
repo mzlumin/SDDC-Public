@@ -21,7 +21,7 @@
             - uplink_name: "{{ nsxt_teaming_policy_link02 }}"
               uplink_type: PNIC              
             policy: LOADBALANCE_SRCID
-          transport_vlan: 110
+          transport_vlan: 6
           state: "present"
 
     - name: Create a Hostswitch Profile - EDGE
@@ -51,7 +51,7 @@
             - uplink_name: "{{ nsxt_teaming_policy_link02 }}"
               uplink_type: PNIC
             policy: "FAILOVER_ORDER"
-          transport_vlan: 120
+          transport_vlan: 6
           state: "present"
 
 

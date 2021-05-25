@@ -1,0 +1,60 @@
+---
+- hosts: localhost
+  name: createNsxT0Gateway.yml
+  vars_files: ../answerfile.yml
+
+  
+  tasks:
+    - name: Create NSX-T APP Segment
+      nsxt_policy_segment:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        display_name: "{{ Segment_01_APP_display_name }}"
+        description:  "{{ Segment_01_APP_description }}"
+        replication_mode: "{{ Segment_01_APP_replication_mode }}"
+        transport_zone_display_name: "{{ Segment_01_APP_transport_zone_display_name }}"
+        tier1_display_name: "{{ Segment_01_APP_transport_tier1_display_name }}"
+        subnets: 
+          - gateway_address: "{{ Segment_01_APP_transport_tier1_subnets }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        state: "present"
+
+    - name: Create NSX-T DB Segment
+      nsxt_policy_segment:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        display_name: "{{ Segment_02_DB_display_name }}"
+        description:  "{{ Segment_02_DB_description }}"
+        replication_mode: "{{ Segment_02_DB_replication_mode }}"
+        transport_zone_display_name: "{{ Segment_02_DB_transport_zone_display_name }}"
+        tier1_display_name: "{{ Segment_02_DB_transport_tier1_display_name }}"
+        subnets: 
+          - gateway_address: "{{ Segment_02_DB_transport_tier1_subnets }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        state: "present"
+
+    - name: Create NSX-T WEB Segment
+      nsxt_policy_segment:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        display_name: "{{ Segment_03_WEB_display_name }}"
+        description:  "{{ Segment_03_WEB_description }}"
+        replication_mode: "{{ Segment_03_WEB_replication_mode }}"
+        transport_zone_display_name: "{{ Segment_03_WEB_transport_zone_display_name }}"
+        tier1_display_name: "{{ Segment_03_WEB_transport_tier1_display_name }}"
+        subnets: 
+          - gateway_address: "{{ Segment_03_WEB_transport_tier1_subnets }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        state: "present"         

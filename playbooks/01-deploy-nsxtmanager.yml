@@ -5,7 +5,7 @@
   vars_files: ../answerfile.yml
 
   tasks:
-    - vmware_deploy_ovf:
+    - community.vmware.vmware_deploy_ovf:
         hostname: "{{ vcenter_hostname }}.{{ domain }}"
         username: "{{ vcenter_username }}"
         password: "{{ vcenter_password }}"
@@ -43,7 +43,7 @@
 ##### Container has issue with Traffic sent directly to
     - name: Check manager status
       nsxt_manager_status:
-          hostname: "172.31.100.100"
+          hostname: "10.0.10.40"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"
           validate_certs: "{{ nsxt_validate_certs }}"

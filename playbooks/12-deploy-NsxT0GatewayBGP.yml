@@ -1,0 +1,48 @@
+---
+- hosts: localhost
+  name: createNsxT0Gateway.yml
+  #vars:
+    #LOCAL_T0Gateways_Template: "{{ Target.TemplateFolder }}/vars_NSXT_T0Gateways.j2"
+  vars_files: ../answerfile.yml
+
+  
+  tasks:
+
+    - name: Create NSX-T Tier-0 Gateway
+      nsxt_policy_tier0:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        state: present
+        display_name: "{{ T0_Gateway_display_name }}"
+        ha_mode: "{{ T0_Gateway_ha_mode }}"
+        failover_mode: "{{ T0_Gateway_failover_mode }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        locale_services:
+          - display_name: "T0-Gateway-01_Locale_Services"
+            description: "T0-Gateway-01 Locale Services Description"
+            state: present
+            tags:
+              - tag: Auto-Created
+                scope: SDDC.Lab
+#            EdgeCluster:
+#              Name: "{{ nsxt_edge_cluster_01 }}"
+            edge_cluster_info:
+              edge_cluster_display_name: "{{ nsxt_edge_cluster_01 }}"
+
+
+#            BGP:
+#              state: present
+#              local_as_num: '65003'
+#              inter_sr_ibgp: False
+#              graceful_restart_config:
+#                mode: "HELPER_ONLY"
+#              neighbors:
+#                - display_name: vyos
+#                  neighbor_address: "172.27.11.1"
+#                  remote_as_num: "65001"
+#                  state: present
+

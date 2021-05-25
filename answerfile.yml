@@ -6,30 +6,30 @@ state_present: "present"
 
 ## ESXI and vCenter VARIABLES - INFRASTRUCTURE ##
 esxi_username: 'root'
-esxi_ip_address: ''
+esxi_ip_address: '10.0.0.200'
 esxi_infrastructure_fqdn: ''
-esxi_mgmt_01_fqdn: ''
-esxi_compute_01_fqdn: ''
-esxi_compute_02_fqdn: ''
-vcenter_username: ''
-vcenter_password: ''
-vcenter_virtual_machine_name: ''
-vcenter_hostname: ''
-vcenter_net_ip_address: ''
-vcenter_net_prefix: ''
-vcenter_net_gateway: ''
-vcenter_dns_servers: ''
-domain: ''
+esxi_mgmt_01_fqdn: 'srv-esxi-01.megasp.net'
+esxi_compute_01_fqdn: 'srv-esxi-02.megasp.net' # 10.0.10.36
+esxi_compute_02_fqdn: 'srv-esxi-03.megasp.net' # 10.0.10.37
+esxi_compute_03_fqdn: 'srv-esxi-04.megasp.net' # 10.0.10.38
+vcenter_username: 'administrator@megasp.net'
+vcenter_password: '20Start!Lab20'
+vcenter_hostname: 'srv-vcenter-01'
+vcenter_net_ip_address: '10.0.10.34'
+vcenter_net_prefix: '24'
+vcenter_net_gateway: '10.0.10.253'
+vcenter_dns_servers: '10.0.10.253'
+domain: 'megasp.net'
 searchpath: "nsxt_virtual_machine_name"
 vcsa_size: 'tiny'
 vcsa_ova_file: '/'
-datastore: ''
+datastore: 'Datastore'
 esxi_network: 'VM Network'
 datacenter_name: ''
 vds_name: ''
-vcenter_cluster: ''
-cluster_name_edge: ''
-cluster_name_compute: ''
+vcenter_cluster: 'Management-Edge'
+cluster_name_edge: 'Management-Edge'
+cluster_name_compute: 'Compute'
 host_folder_name_edge: ''
 host_folder_name_compute: ''
 vm_folder_name_infrastructure: ''
@@ -41,23 +41,23 @@ vm_folder_name_tenant_02: 'COMPUTE-TENANT-02'
 ## NSXT VARIABLES - DATA CENTER INFRASTRUCTURE ##
 nsxt_virtual_machine_name: "SRV-NSXT-MANAGER-01"
 nsxt_hostname: "srv-nsxt-manager-01"
-nsxt_ova_file: "" 
+nsxt_ova_file: '/home/mzulmin/lab-images/nsx-unified-appliance-3.1.2.0.0.17883600.ova'
 nsxt_ova_size: "small"
-nsxt_port_group: ""
+nsxt_port_group: "vlan-10-MGMT"
 nsxt_audit_user: "audit" 
 nsxt_admin_user: "admin"
-nsxt_password: ""
-nsxt_ip_address: ""
-nsxt_netmask: ""
-nsxt_gateway: ""
+nsxt_password: "20Start!Lab20"
+nsxt_ip_address: "10.0.10.40"
+nsxt_netmask: "24"
+nsxt_gateway: "10.0.10.253"
 nsxt_role: "NSX Manager"
-nsxt_datacenter: ""
-nsxt_vm_folder: ""
-nsxt_compute_manager_display_name: ""
+nsxt_datacenter: "ATX-01"
+nsxt_vm_folder: 'NSX-INFRASTRUCTURE'
+nsxt_compute_manager_display_name: "SRV-NSXT-MANAGER-01"
 nsxt_compute_manager_origin_type: "vCenter"
 nsxt_compute_manager_credential_type: "UsernamePasswordLoginCredential"
 nsxt_validate_certs: False
-nsxt_license: ""
+nsxt_license: "MV410-0EL80-H8069-J1CZH-86220"
 
 ## NSXT VARIABLES - INFRASTRUCTURE ##
 nsxt_transportzone_overlay_display_name: "TZ-Overlay"
@@ -73,28 +73,28 @@ nsxt_teaming_policy_link02: "uplink-2"
 
 nsxt_transportnode_profile_name: "TNP-Compute"
 nsxt_uplink_teaming_policies: ["TOR-1", "TOR-2"]
-nsxt_edge_nvds_name: "EDGE-NVDS"
+nsxt_edge_nvds_name: "vCenter"
 nsxt_edge_DPG_data: "DPG-TRUNK"
-nsxt_edge_DPG_management: "DPG-VLAN100-MGMT-INFRASTRUCTURE"
-nsxt_edge_gateway: ""
-nsxt_edge_01_name: "-"
+nsxt_edge_DPG_management: "vlan-10-MGMT"
+nsxt_edge_gateway: "10.0.10.253"
+nsxt_edge_01_name: "srv-edge-01.megasp.net"
 nsxt_edge_02_name: "-"
 nsxt_edge_03_name: "-"
 nsxt_edge_04_name: "-"
 nsxt_edge_05_name: "-"
-nsxt_edge_01_display_name: ""
+nsxt_edge_01_display_name: "srv-edge-01.megasp.net"
 nsxt_edge_02_display_name: ""
 nsxt_edge_03_display_name: ""
 nsxt_edge_04_display_name: ""
 nsxt_edge_05_display_name: ""
 nsxt_edge_06_display_name: ""
-nsxt_edge_01_ip: ""
+nsxt_edge_01_ip: "10.0.10.41"
 nsxt_edge_02_ip: ""
 nsxt_edge_03_ip: ""
 nsxt_edge_04_ip: ""
 nsxt_edge_05_ip: ""
 nsxt_edge_06_ip: ""
-nsxt_edge_cluster_01: ""
+nsxt_edge_cluster_01: "Edge-Cluster-01"
 nsxt_edge_cluster_02: ""
 nsxt_edge_cluster_03: ""
 
@@ -116,3 +116,61 @@ vx_ova_file: ''
 vx_management_port_group: ""
 vx_trunk_port_group: ""
 
+## NSX Networking
+
+T0_Gateway_display_name: "T0-GW"
+T0_Gateway_ha_mode: "ACTIVE_STANDBY"
+T0_Gateway_failover_mode: "NON_PREEMPTIVE"
+T0_Gateway_local_service_display_name: "T0-Gateway-01_Locale_Services"
+T0_Gateway_local_service_description: "T0-Gateway-01 Locale Services Description"
+T0_Gateway_interfaces_display_name: "T0-EdgeVM-01-1_VLAN" 
+T0_Gateway_interfaces_description: "T0-EdgeVM-01 Uplink 1"
+T0_Gateway_interfaces_type: "EXTERNAL"
+T0_Gateway_interfaces_urpf_mode: "NONE"
+T0_Gateway_interfaces_subnets_ip_adresses: "172.27.11.2"
+T0_Gateway_interfaces_subnets_prefix_len: "24"
+T0_Gateway_bgp_local_as_num: "65003"
+T0_Gateway_bgp_graceful_restart_config_mode: "GR_AND_HELPER"
+T0_Gateway_bgp_neighbors_display_name: "vyos-edge"
+T0_Gateway_bgp_neighbors_neighbor_address: "172.27.11.1"
+T0_Gateway_bgp_neighbors_remote_as_num: "65001"
+T0_Gateway_bgp_neighbors_source_addresses: "172.27.11.2"
+T0_Gateway_bgp_neighbors_graceful_restart_mode: "GR_AND_HELPER"
+
+T1_Gateway_display_name: "T1-GW"
+T1_Gateway_ha_mode: "ACTIVE_STANDBY"
+T1_Gateway_failover_mode: "NON_PREEMPTIVE"
+T1_Gateway_pool_allocation: "ROUTING"
+
+
+## SEGMENTS
+
+Segment_00_uplink_display_name: "Uplink-VLAN-11"
+Segment_00_uplink_description: "Uplink-VLAN-1"
+Segment_00_uplink_replication_mode: "SOURCE" # MTEP / SOURCE
+Segment_00_uplink_transport_zone_display_name: "{{ nsxt_transportzone_vlan_display_name }}"
+Segment_00_uplink_vlan_ids: "11"
+
+
+
+
+Segment_01_APP_display_name: "APP"
+Segment_01_APP_description: "APP"
+Segment_01_APP_replication_mode: "SOURCE" # MTEP / SOURCE
+Segment_01_APP_transport_zone_display_name: "{{ nsxt_transportzone_overlay_display_name }}"
+Segment_01_APP_transport_tier1_display_name: "{{ T1_Gateway_display_name }}"
+Segment_01_APP_transport_tier1_subnets: "10.0.101.1/24"
+
+Segment_02_DB_display_name: "DB"
+Segment_02_DB_description: "DB"
+Segment_02_DB_replication_mode: "SOURCE" # MTEP / SOURCE
+Segment_02_DB_transport_zone_display_name: "{{ nsxt_transportzone_overlay_display_name }}"
+Segment_02_DB_transport_tier1_display_name: "{{ T1_Gateway_display_name }}"
+Segment_02_DB_transport_tier1_subnets: "10.0.100.1/24"
+
+Segment_03_WEB_display_name: "WEB"
+Segment_03_WEB_description: "WEB"
+Segment_03_WEB_replication_mode: "SOURCE" # MTEP / SOURCE
+Segment_03_WEB_transport_zone_display_name: "{{ nsxt_transportzone_overlay_display_name }}"
+Segment_03_WEB_transport_tier1_display_name: "{{ T1_Gateway_display_name }}"
+Segment_03_WEB_transport_tier1_subnets: "10.0.102.1/24"		

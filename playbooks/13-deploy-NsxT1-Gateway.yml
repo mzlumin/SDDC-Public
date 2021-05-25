@@ -1,0 +1,42 @@
+---
+- hosts: localhost
+  name: createNsxT1Gateway.yml
+  vars_files: ../answerfile.yml
+
+  
+  tasks:
+
+    - name: Create NSX-T Tier-1 Gateway
+      nsxt_policy_tier1:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        state: present
+        display_name: "{{ T1_Gateway_display_name }}"
+        description: "T1-Gateway-01 Locale Services Description"
+        failover_mode: "{{ T1_Gateway_failover_mode }}"
+        tier0_display_name: "{{ T0_Gateway_display_name }}"
+        pool_allocation: "{{ T1_Gateway_pool_allocation }}"
+        do_wait_till_create: true
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        locale_services:
+          - state: present
+            display_name: "T1-Gateway-01_Locale_Services"
+            description: "T1-Gateway-01 Locale Services Description"
+            tags:
+              - tag: Auto-Created
+                scope: SDDC.Lab            
+            edge_cluster_info:
+              edge_cluster_display_name: "{{ nsxt_edge_cluster_01 }}"         
+        route_advertisement_types:
+            - 'TIER1_STATIC_ROUTES'
+            - 'TIER1_CONNECTED'
+            - 'TIER1_NAT'
+            - 'TIER1_LB_VIP'
+            - 'TIER1_LB_SNAT'
+            - 'TIER1_DNS_FORWARDER_IP'
+            - 'TIER1_IPSEC_LOCAL_ENDPOINT'
+

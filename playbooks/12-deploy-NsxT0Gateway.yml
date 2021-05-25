@@ -1,0 +1,78 @@
+---
+- hosts: localhost
+  name: createNsxT0Gateway.yml
+  vars_files: ../answerfile.yml
+
+  
+  tasks:
+
+    - name: Create NSX-T Tier-0 Gateway
+      nsxt_policy_tier0:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        state: present
+        display_name: "{{ T0_Gateway_display_name }}"
+        ha_mode: "{{ T0_Gateway_ha_mode }}"
+        failover_mode: "{{ T0_Gateway_failover_mode }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        locale_services:
+          - display_name: "{{ T0_Gateway_local_service_display_name }}"  #"T0-Gateway-01_Locale_Services"
+            description: "{{ T0_Gateway_local_service_description }}"     #"T0-Gateway-01 Locale Services Description"
+            state: present
+            tags:
+              - tag: Auto-Created
+                scope: SDDC.Lab
+            edge_cluster_info:
+              edge_cluster_display_name: "{{ nsxt_edge_cluster_01 }}"
+            route_redistribution_config:
+              bgp_enabled: true
+              redistribution_rules:
+                - name: Redistribute Connected
+                  route_redistribution_types:                                                                        # Types include TIER0_STATIC, TIER0_CONNECTED, TIER0_EXTERNAL_INTERFACE, TIER0_LOOPBACK_INTERFACE, TIER0_SEGMENT, TIER0_ROUTER_LINK, TIER0_SERVICE_INTERFACE, TIER0_DNS_FORWARDER_IP, TIER0_IPSEC_LOCAL_IP, TIER0_NAT, TIER0_EVPN_TEP_IP, TIER1_STATIC, TIER1_NAT, TIER1_LB_VIP, TIER1_LB_SNAT, TIER1_DNS_FORWARDER_IP, TIER1_CONNECTED, TIER1_SERVICE_INTERFACE, TIER1_SEGMENT, TIER1_IPSEC_LOCAL_ENDPOINT
+                    - TIER0_CONNECTED
+                    - TIER0_SEGMENT
+                    - TIER1_CONNECTED
+                    - TIER1_SEGMENT
+            interfaces:
+              - display_name: "{{ T0_Gateway_interfaces_display_name }}"  #"T0-EdgeVM-01-1_VLAN"
+                state: present
+                description: "{{ T0_Gateway_interfaces_description }}"  #"T0-EdgeVM-01 Uplink 1"
+                segment_display_name: "{{ Segment_00_uplink_display_name }}"     #"Uplink-VLAN-11"
+                type: "{{ T0_Gateway_interfaces_type }}"  #"EXTERNAL"                                                                    # Options are EXTERNAL, LOOPBACK, or SERVICE
+                urpf_mode: "{{ T0_Gateway_interfaces_urpf_mode }}"  #"NONE"                                                                    # Options are NONE or STRICT
+                tags:
+                  - tag: Auto-Created
+                    scope: SDDC.Lab
+                edge_node_info:
+                  edge_cluster_display_name: "{{ nsxt_edge_cluster_01 }}"
+                  edge_node_display_name: "{{ nsxt_edge_01_display_name }}"
+                subnets:
+                  - ip_addresses: ["{{ T0_Gateway_interfaces_subnets_ip_adresses }}"]   #["172.27.11.2"] 
+                    prefix_len: "{{ T0_Gateway_interfaces_subnets_prefix_len }}"   #"24"
+            BGP:
+              state: present
+              enabled: true
+              local_as_num: "{{ T0_Gateway_bgp_local_as_num }}"   #'65003'
+              ecmp: true
+              inter_sr_ibgp: false
+              multipath_relax: false
+              graceful_restart_config:
+                mode: "{{ T0_Gateway_bgp_graceful_restart_config_mode }}"  #"GR_AND_HELPER"                                                                   # Options are DISABLE, GR_AND_HELPER, HELPER_ONLY, and GRACEFUL_RESTART
+              neighbors:
+                - display_name: "{{ T0_Gateway_bgp_neighbors_display_name }}"  #vyos-edge
+                  neighbor_address: "{{ T0_Gateway_bgp_neighbors_neighbor_address }}"   #"172.27.11.1"
+                  remote_as_num:  "{{ T0_Gateway_bgp_neighbors_remote_as_num }}"  #"65001"
+                  allow_as_in: true
+                  state: present
+                  source_addresses:
+                    -  "{{ T0_Gateway_bgp_neighbors_source_addresses }}"  #"172.27.11.2"
+                  bfd:
+                    enabled: false
+                  graceful_restart_mode: "{{ T0_Gateway_bgp_neighbors_graceful_restart_mode }}"   #"GR_AND_HELPER"
+
+
+

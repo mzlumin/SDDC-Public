@@ -37,5 +37,6 @@
             credential_type: "UsernamePasswordLoginCredential"
             username: "{{ vcenter_username }}"
             password: "{{ vcenter_password }}"
+          set_as_oidc_provider: True
           state: "present"
 

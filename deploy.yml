@@ -7,14 +7,18 @@
 
 # Infrastructure Deployment # 
 
-- import_playbook: playbooks/01-deploy-nsxtmanager.yml
-- import_playbook: playbooks/02-configure-compute-manager.yml
-- import_playbook: playbooks/03-configure-nsxtmanager-license.yml
-- import_playbook: playbooks/04-configure-nsxtmanager-uplinkprofiles.yml
-- import_playbook: playbooks/05-configure-nsxtmanager-ippools.yml
-- import_playbook: playbooks/06-configure-nsxtmanager-transportzones.yml
-- import_playbook: playbooks/07-configure-nsxtmanager-transportnodesprofiles.yml
-- import_playbook: playbooks/08-configure-nsxtmanager-transportnodes.yml
-- import_playbook: playbooks/09-deploy-edgenodes.yml
-- import_playbook: playbooks/10-configure-nsxtmanager-edgeclusters.yml
-- import_playbook: playbooks/11-deploy-cumulus.yml
+#- import_playbook: playbooks/01-deploy-nsxtmanager.yml
+#- import_playbook: playbooks/02-configure-compute-manager.yml
+#- import_playbook: playbooks/03-configure-nsxtmanager-license.yml
+#- import_playbook: playbooks/04-configure-nsxtmanager-uplinkprofiles.yml
+#- import_playbook: playbooks/05-configure-nsxtmanager-ippools.yml
+#- import_playbook: playbooks/06-configure-nsxtmanager-transportzones.yml
+#- import_playbook: playbooks/07-configure-nsxtmanager-transportnodesprofiles.yml
+#- import_playbook: playbooks/08-configure-nsxtmanager-transportnodes.yml
+#- import_playbook: playbooks/09-deploy-edgenodes.yml
+#- import_playbook: playbooks/10-configure-nsxtmanager-edgeclusters.yml
+- import_playbook: playbooks/11-configure-Nsx-uplinkSegment.yml
+- import_playbook: playbooks/12-deploy-NsxT0Gateway.yml
+- import_playbook: playbooks/13-deploy-NsxT1-Gateway.yml
+#- import_playbook: playbooks/test.yml
+- import_playbook: playbooks/14-create-Nsx-T1-linked-Segments.yml

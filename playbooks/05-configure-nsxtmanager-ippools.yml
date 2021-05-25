@@ -22,10 +22,10 @@
           - id: IPPool-IPV4-TEP-COMPUTE
             state: present
             allocation_ranges:
-              - start: '172.31.110.10'
-                end: '172.31.110.254'
-            cidr: '172.31.110.0/24'
-            gateway_ip: '172.31.110.1'
+              - start: '10.0.6.10'
+                end: '10.0.6.20'
+            cidr: '10.0.6.0/24'
+            gateway_ip: '10.0.6.1'
 
     - name: create IP Pool - IPPool-IPV4-TEP-EDGE
       nsxt_policy_ip_pool:
@@ -44,9 +44,9 @@
           - id: IPPool-IPV4-TEP-EDGE
             state: present
             allocation_ranges:
-              - start: '172.31.120.10'
-                end: '172.31.120.254'
-            cidr: '172.31.120.0/24'
-            gateway_ip: '172.31.120.1'
+              - start: '10.0.6.30'
+                end: '10.0.6.40'
+            cidr: '10.0.6.0/24'
+            gateway_ip: '10.0.6.1'
 
 

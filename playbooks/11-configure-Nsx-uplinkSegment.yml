@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  name: Configure NSX Segments
+  gather_facts: false
+  vars_files: ../answerfile.yml
+
+  tasks:
+
+    - name: Create NSX-T APP Segment
+      nsxt_policy_segment:
+        hostname: "{{ nsxt_hostname }}.{{ domain }}"
+        username: "{{ nsxt_admin_user }}"
+        password: "{{ nsxt_password }}"
+        validate_certs: "{{ nsxt_validate_certs }}"
+        display_name: "{{ Segment_00_uplink_display_name }}"
+        description:  "{{ Segment_00_uplink_description }}"
+        replication_mode: "{{ Segment_00_uplink_replication_mode }}"
+        transport_zone_display_name: "{{ Segment_00_uplink_transport_zone_display_name }}"
+        tags:
+          - tag: Auto-Created
+            scope: SDDC.Lab
+        vlan_ids: "{{ Segment_00_uplink_vlan_ids }}"   
+        state: "present"
+
