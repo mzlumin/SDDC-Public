@@ -1,5 +1,6 @@
 ---
 - hosts: localhost
+
   name: Register vCenter as a compute manager in NSX-T
   gather_facts: false
   vars_files: ../answerfile.yml
@@ -25,7 +26,7 @@
     #    minutes: 2
       
     - name: Register compute manager
-      nsxt_fabric_compute_managers:
+      vmware.ansible_for_nsxt.nsxt_fabric_compute_managers:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"

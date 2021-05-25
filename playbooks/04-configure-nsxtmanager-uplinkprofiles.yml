@@ -6,7 +6,7 @@
 
   tasks:
     - name: Create a Hostswitch Profile - COMPUTE
-      nsxt_uplink_profiles:
+      vmware.ansible_for_nsxt.nsxt_uplink_profiles:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"
@@ -25,7 +25,7 @@
           state: "present"
 
     - name: Create a Hostswitch Profile - EDGE
-      nsxt_uplink_profiles:
+      vmware.ansible_for_nsxt.nsxt_uplink_profiles:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"

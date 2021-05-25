@@ -6,7 +6,7 @@
 
   tasks:
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 01
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -66,7 +66,7 @@
         state: absent
 
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 02
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -127,7 +127,7 @@
 
 
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 03
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -188,7 +188,7 @@
 
 
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 04
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -249,7 +249,7 @@
 
 
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 05
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -309,7 +309,7 @@
         state: absent
 
     - name: Delete NSX-T 3.0 Edge Nodes - EDGE 06
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

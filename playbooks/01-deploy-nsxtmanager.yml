@@ -42,7 +42,7 @@
 
 ##### Container has issue with Traffic sent directly to
     - name: Check manager status
-      nsxt_manager_status:
+      vmware.ansible_for_nsxt.nsxt_manager_status:
           hostname: "10.0.10.40"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"
@@ -51,6 +51,6 @@
     
     - name: Pause a little bit
       pause: 
-        minutes: 5
+        minutes: 10
       
 

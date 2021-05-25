@@ -6,7 +6,7 @@
 
   tasks:
     - name: Create NSX-T 3.0 transport zone - OVERLAY 
-      nsxt_transport_zones:
+      vmware.ansible_for_nsxt.nsxt_transport_zones:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"
@@ -19,7 +19,7 @@
           state: "present"
 
     - name: Create NSX-T 3.0 transport zone - VLAN 
-      nsxt_transport_zones:
+      vmware.ansible_for_nsxt.nsxt_transport_zones:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"

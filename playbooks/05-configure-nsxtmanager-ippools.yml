@@ -6,7 +6,7 @@
 
   tasks:
     - name: create IP Pool - IPPool-IPV4-TEP-COMPUTE
-      nsxt_policy_ip_pool:
+      vmware.ansible_for_nsxt.nsxt_policy_ip_pool:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -28,7 +28,7 @@
             gateway_ip: '10.0.6.1'
 
     - name: create IP Pool - IPPool-IPV4-TEP-EDGE
-      nsxt_policy_ip_pool:
+      vmware.ansible_for_nsxt.nsxt_policy_ip_pool:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

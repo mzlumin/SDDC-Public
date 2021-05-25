@@ -6,7 +6,7 @@
 
   tasks:
     - name: Delete Edge Cluster - 01
-      nsxt_edge_clusters:
+      vmware.ansible_for_nsxt.nsxt_edge_clusters:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -22,7 +22,7 @@
         state: absent
 
     - name: Delete Edge Cluster - 02
-      nsxt_edge_clusters:
+      vmware.ansible_for_nsxt.nsxt_edge_clusters:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -39,7 +39,7 @@
         state: absent
 
     - name: Delete Edge Cluster - 03
-      nsxt_edge_clusters:
+      vmware.ansible_for_nsxt.nsxt_edge_clusters:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

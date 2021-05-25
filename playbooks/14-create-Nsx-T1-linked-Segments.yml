@@ -6,7 +6,7 @@
   
   tasks:
     - name: Create NSX-T APP Segment
-      nsxt_policy_segment:
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -24,7 +24,7 @@
         state: "present"
 
     - name: Create NSX-T DB Segment
-      nsxt_policy_segment:
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
@@ -42,7 +42,7 @@
         state: "present"
 
     - name: Create NSX-T WEB Segment
-      nsxt_policy_segment:
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

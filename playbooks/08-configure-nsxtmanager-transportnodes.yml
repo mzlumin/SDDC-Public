@@ -6,7 +6,7 @@
 
   tasks:
     - name: Create transport node collection
-      nsxt_transport_node_collections:
+      vmware.ansible_for_nsxt.nsxt_transport_node_collections:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

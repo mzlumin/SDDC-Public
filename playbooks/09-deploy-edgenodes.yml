@@ -6,7 +6,7 @@
 
   tasks:
     - name: Deploy and configure NSX-T 3.0 Edge transport nodes - EDGE 01
-      nsxt_transport_nodes:
+      vmware.ansible_for_nsxt.nsxt_transport_nodes:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

@@ -6,7 +6,7 @@
 
   tasks:
     - name: Create Transport Node Profile - COMPUTE
-      nsxt_transport_node_profiles:
+      vmware.ansible_for_nsxt.nsxt_transport_node_profiles:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"

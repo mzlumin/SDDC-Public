@@ -6,7 +6,7 @@
 
   tasks:
     - name: Apply license to NSX-T Manager
-      nsxt_licenses:
+      vmware.ansible_for_nsxt.nsxt_licenses:
           hostname: "{{ nsxt_hostname }}.{{ domain }}"
           username: "{{ nsxt_admin_user }}"
           password: "{{ nsxt_password }}"

@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  name: Deploy the NSX Manager to a vCenter environment
+  gather_facts: false
+  vars_files: ../answerfile.yml
+
+  tasks:
+    - name: Delete old vmware galaxy for fix dvs version 7-0-2                              # https://github.com/ansible-collections/community.vmware/issues/839
+      file:
+        path: /home/mzulmin/.ansible/collections/ansible_collections/community/vmware
+        state: absent
+
+
+    - name: Force Galaxy re-download
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection install community.vmware
+       

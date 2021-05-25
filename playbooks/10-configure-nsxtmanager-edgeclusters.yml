@@ -6,7 +6,7 @@
 
   tasks:
     - name: Create Edge Cluster - 01
-      nsxt_edge_clusters:
+      vmware.ansible_for_nsxt.nsxt_edge_clusters:
         hostname: "{{ nsxt_hostname }}.{{ domain }}"
         username: "{{ nsxt_admin_user }}"
         password: "{{ nsxt_password }}"
